@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 
 class MainActivity : AppCompatActivity() {
@@ -41,11 +42,23 @@ class MainActivity : AppCompatActivity() {
            phoneEdit.text.clear()
            description.text.clear()
              */
-            contactDataArray.add(ContactData(nameEdit.text.toString(),phoneEdit.text.toString(),description.text.toString()))
-            recyclerView.adapter=adapter
-            nameEdit.setText("");
-            phoneEdit.text.clear()
-            description.text.clear()
+            if(phoneEdit.text.isEmpty()){
+                Toast.makeText(this@MainActivity, "Must Enter Phone Number", Toast.LENGTH_SHORT).show()
+            }else {
+
+                contactDataArray.add(
+                    ContactData(
+                        nameEdit.text.toString(),
+                        phoneEdit.text.toString(),
+                        description.text.toString()
+                    )
+                )
+                recyclerView.adapter = adapter
+                nameEdit.setText("");
+                phoneEdit.text.clear()
+                description.text.clear()
+            }
+
 
         })
 
